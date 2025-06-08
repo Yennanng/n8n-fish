@@ -37,7 +37,7 @@ import streamlit as st
 import requests
 import base64
 
-st.title("Nhận diện bệnh cho cá")
+st.title("Nhận diện bệnh cho cá💅")
 
 uploaded_file = st.file_uploader("Tải ảnh cá lên", type=["jpg", "png"])
 
