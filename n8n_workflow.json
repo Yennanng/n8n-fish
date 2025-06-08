@@ -1,0 +1,47 @@
+{
+  "name": "Receive Image from Streamlit",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "fish-image",
+        "method": "POST",
+        "responseMode": "lastNode"
+      },
+      "id": "WebhookNode",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        300,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const img = $json.image_base64;\nconst name = $json.filename;\nreturn [{ json: { name, img } }];"
+      },
+      "id": "FunctionNode",
+      "name": "Show Data",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        520,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Show Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false
+}
