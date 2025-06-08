@@ -4,6 +4,8 @@ import base64
 from PIL import Image
 from io import BytesIO
 
+
+
 st.set_page_config(page_title="Upload Fish Image", page_icon="🐟")
 st.title("🐟 Fish Image Uploader")
 
@@ -18,7 +20,7 @@ if uploaded_file is not None:
     image.save(buffered, format="PNG")
     img_base64 = base64.b64encode(buffered.getvalue()).decode()
 
-    if st.button("📤 Nhận diện bệnh ở cá"):
+    if st.button("📤 Gửi ảnh đến n8n"):
         webhook_url = "https://n8n.n2nai.io/webhook-test/fish-image"
 
         response = requests.post(webhook_url, json={
@@ -30,5 +32,3 @@ if uploaded_file is not None:
             st.success("✅ Ảnh đã được gửi đến n8n!")
         else:
             st.error("❌ Gửi thất bại.")
-
-
