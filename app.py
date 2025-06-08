@@ -44,12 +44,15 @@ uploaded_file = st.file_uploader("Tải ảnh cá lên", type=["jpg", "png"])
 if uploaded_file is not None:
     st.image(uploaded_file, caption="Ảnh cá cần nhận diện", use_column_width=True)
 
-    if st.button("Nhận diện"):
+    if st.button("Nhận diện bệnh"):
         img_bytes = uploaded_file.read()
         img_base64 = base64.b64encode(img_bytes).decode()
 
-        payload = {"image_base64": img_base64}
-        response = requests.post("https://n8n.n2nai.io/webhook-test/fish-image", json=payload)
+        payload = {
+            "filename": uploaded_file.name,
+            "image_base64": img_base64
+        }
+        response = requests.post("https://n8n.n2nai.io/webhook/fish-image", json=payload)
 
         if response.ok:
             st.success("✅ Kết quả: " + response.json()["message"])
