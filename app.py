@@ -18,8 +18,8 @@ if uploaded_file is not None:
     image.save(buffered, format="PNG")
     img_base64 = base64.b64encode(buffered.getvalue()).decode()
 
-    if st.button("📤 Gửi ảnh đến n8n"):
-        webhook_url = "https://n8n.n2nai.io/webhook-test/fish-image"
+    if st.button("📤 Nhận diện bệnh"):
+        webhook_url = "https://n8n.n2nai.io/webhook/my-app"
 
         response = requests.post(webhook_url, json={
             "filename": uploaded_file.name,
