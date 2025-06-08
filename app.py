@@ -49,7 +49,7 @@ if uploaded_file is not None:
         img_base64 = base64.b64encode(img_bytes).decode()
 
         payload = {"image_base64": img_base64}
-        response = requests.post("http://localhost:5678/webhook/fish-disease-recognition", json=payload)
+        response = requests.post("https://n8n.n2nai.io/webhook-test/fish-image", json=payload)
 
         if response.ok:
             st.success("✅ Kết quả: " + response.json()["message"])
